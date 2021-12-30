@@ -41,10 +41,6 @@ impl<F: PrimeField> AllocatedFp<F> {
 /// Represent variables corresponding to a field element in `F`.
 #[derive(Clone, Debug)]
 #[must_use]
-pub enum FpVar<F: PrimeField> {
-    /// Represents a constant in the constraint system, which means that
-    /// it does not have a corresponding variable.
-    Constant(F),
     /// Represents an allocated variable constant in the constraint system.
     Var(AllocatedFp<F>),
 }
