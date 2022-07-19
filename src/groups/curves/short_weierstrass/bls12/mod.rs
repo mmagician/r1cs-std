@@ -1,6 +1,6 @@
 use ark_ec::{
     bls12::{Bls12Parameters, G1Prepared, G2Prepared, TwistType},
-    short_weierstrass_jacobian::GroupAffine,
+    short_weierstrass::Affine,
 };
 use ark_ff::{BitIteratorBE, Field, One};
 use ark_relations::r1cs::{Namespace, SynthesisError};

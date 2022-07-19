@@ -6,7 +6,7 @@ use super::*;
 #[derivative(Debug, Clone)]
 #[must_use]
 pub struct NonZeroAffineVar<
-    P: SWModelParameters,
+    P: SWCurveConfig,
     F: FieldVar<P::BaseField, <P::BaseField as Field>::BasePrimeField>,
 > where
     for<'a> &'a F: FieldOpsBounds<'a, P::BaseField, F>,
@@ -21,7 +21,7 @@ pub struct NonZeroAffineVar<
 
 impl<P, F> NonZeroAffineVar<P, F>
 where
-    P: SWModelParameters,
+    P: SWCurveConfig,
     F: FieldVar<P::BaseField, <P::BaseField as Field>::BasePrimeField>,
     for<'a> &'a F: FieldOpsBounds<'a, P::BaseField, F>,
 {
@@ -134,7 +134,7 @@ where
 
 impl<P, F> R1CSVar<<P::BaseField as Field>::BasePrimeField> for NonZeroAffineVar<P, F>
 where
-    P: SWModelParameters,
+    P: SWCurveConfig,
     F: FieldVar<P::BaseField, <P::BaseField as Field>::BasePrimeField>,
     for<'a> &'a F: FieldOpsBounds<'a, P::BaseField, F>,
 {
@@ -151,7 +151,7 @@ where
 
 impl<P, F> CondSelectGadget<<P::BaseField as Field>::BasePrimeField> for NonZeroAffineVar<P, F>
 where
-    P: SWModelParameters,
+    P: SWCurveConfig,
     F: FieldVar<P::BaseField, <P::BaseField as Field>::BasePrimeField>,
     for<'a> &'a F: FieldOpsBounds<'a, P::BaseField, F>,
 {
@@ -171,7 +171,7 @@ where
 
 impl<P, F> EqGadget<<P::BaseField as Field>::BasePrimeField> for NonZeroAffineVar<P, F>
 where
-    P: SWModelParameters,
+    P: SWCurveConfig,
     F: FieldVar<P::BaseField, <P::BaseField as Field>::BasePrimeField>,
     for<'a> &'a F: FieldOpsBounds<'a, P::BaseField, F>,
 {
@@ -230,7 +230,7 @@ mod test_non_zero_affine {
     use crate::groups::curves::short_weierstrass::ProjectiveVar;
     use crate::groups::CurveVar;
     use crate::R1CSVar;
-    use ark_ec::{ProjectiveCurve, SWModelParameters};
+    use ark_ec::{ProjectiveCurve, SWCurveConfig};
     use ark_relations::r1cs::ConstraintSystem;
     use ark_std::{vec::Vec, One};
     use ark_test_curves::bls12_381::{g1::Parameters as G1Parameters, Fq};
