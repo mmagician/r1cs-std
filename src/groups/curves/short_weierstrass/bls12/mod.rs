@@ -41,7 +41,6 @@ impl<P: Bls12Parameters> G1PreparedVar<P> {
     pub fn value(&self) -> Result<G1Prepared<P>, SynthesisError> {
         let x = self.0.x.value()?;
         let y = self.0.y.value()?;
-        let infinity = self.0.infinity.value()?;
         let g = Affine::new_unchecked(x, y);
         Ok(g.into())
     }
