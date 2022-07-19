@@ -145,7 +145,7 @@ where
     }
 
     fn value(&self) -> Result<SWAffine<P>, SynthesisError> {
-        Ok(SWAffine::new(self.x.value()?, self.y.value()?, false))
+        Ok(SWAffine::new_unchecked(self.x.value()?, self.y.value()?))
     }
 }
 

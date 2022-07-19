@@ -92,7 +92,6 @@ where
         Ok(SWAffine::new(
             self.x.value()?,
             self.y.value()?,
-            self.infinity.value()?,
         ))
     }
 }
@@ -132,9 +131,9 @@ where
     fn value(&self) -> Result<Self::Value, SynthesisError> {
         let (x, y, z) = (self.x.value()?, self.y.value()?, self.z.value()?);
         let result = if let Some(z_inv) = z.inverse() {
-            SWAffine::new(x * &z_inv, y * &z_inv, false)
+            SWAffine::new_unchecked(x * &z_inv, y * &z_inv)
         } else {
-            SWAffine::zero()
+            SWAffine::identity()
         };
         Ok(result.into())
     }
