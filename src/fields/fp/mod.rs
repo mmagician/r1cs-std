@@ -918,7 +918,7 @@ impl<F: PrimeField> ToBytesGadget<F> for FpVar<F> {
     #[tracing::instrument(target = "r1cs")]
     fn to_bytes(&self) -> Result<Vec<UInt8<F>>, SynthesisError> {
         match self {
-            Self::Constant(c) => Ok(UInt8::constant_vec(&ark_ff::to_bytes![c].unwrap())),
+            Self::Constant(_) => self.to_non_unique_bytes(),
             Self::Var(v) => v.to_bytes(),
         }
     }
@@ -926,7 +926,7 @@ impl<F: PrimeField> ToBytesGadget<F> for FpVar<F> {
     #[tracing::instrument(target = "r1cs")]
     fn to_non_unique_bytes(&self) -> Result<Vec<UInt8<F>>, SynthesisError> {
         match self {
-            Self::Constant(c) => Ok(UInt8::constant_vec(&ark_ff::to_bytes![c].unwrap())),
+            Self::Constant(c) => Ok(UInt8::constant_vec(&c.into_bigint().to_bytes_le())),
             Self::Var(v) => v.to_non_unique_bytes(),
         }
     }
