@@ -236,7 +236,7 @@ mod test_non_zero_affine {
         },
         R1CSVar,
     };
-    use ark_ec::{ProjectiveCurve, SWModelParameters};
+    use ark_ec::{ProjectiveCurve, short_weierstrass::SWCurveConfig};
     use ark_relations::r1cs::ConstraintSystem;
     use ark_std::{vec::Vec, One};
     use ark_test_curves::bls12_381::{g1::Parameters as G1Parameters, Fq};
@@ -247,13 +247,13 @@ mod test_non_zero_affine {
 
         let x = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.0)
+                Ok(G1Parameters::GENERATOR.x)
             })
             .unwrap(),
         );
         let y = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.1)
+                Ok(G1Parameters::GENERATOR.y)
             })
             .unwrap(),
         );
@@ -314,13 +314,13 @@ mod test_non_zero_affine {
 
         let x = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.0)
+                Ok(G1Parameters::GENERATOR.x)
             })
             .unwrap(),
         );
         let y = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.1)
+                Ok(G1Parameters::GENERATOR.y)
             })
             .unwrap(),
         );
@@ -366,13 +366,13 @@ mod test_non_zero_affine {
 
         let x = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.0)
+                Ok(G1Parameters::GENERATOR.x)
             })
             .unwrap(),
         );
         let y = FpVar::Var(
             AllocatedFp::<Fq>::new_witness(cs.clone(), || {
-                Ok(G1Parameters::AFFINE_GENERATOR_COEFFS.1)
+                Ok(G1Parameters::GENERATOR.y)
             })
             .unwrap(),
         );
