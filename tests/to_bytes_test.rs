@@ -1,5 +1,5 @@
 use ark_ec::PairingEngine;
-use ark_ff::{to_bytes, Zero};
+use ark_ff::{BigInteger, PrimeField, Zero};
 use ark_mnt4_298::MNT4_298;
 use ark_mnt6_298::MNT6_298;
 use ark_r1cs_std::{
@@ -34,7 +34,10 @@ fn to_bytes_test() {
         assert_eq!(*byte, 0);
     }
 
-    assert_eq!(to_bytes!(target_test_elem).unwrap(), target_to_bytes);
+    assert_eq!(
+        target_test_elem.into_bigint().to_bytes_le(),
+        target_to_bytes
+    );
 }
 
 #[test]
